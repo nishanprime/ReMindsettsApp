@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,25 +11,29 @@ const Footer = () => {
               <h2>Useful links</h2>
               <ul>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2">Home</a>
+                  <Link to="/">
+                    <a>Home</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/about-us">
-                    About us
-                  </a>
+                  <Link to="/about">
+                    <a>About us</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals">
-                    Professionals
-                  </a>
+                  <Link to="/professionals">
+                    <a>Professionals</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Podcasts</a>
+                  <Link to="#">
+                    <a href="#">Podcasts</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/testimonials">
-                    Testimonials
-                  </a>
+                  <Link to="/testimonials">
+                    <a href="#">Testimonials</a>
+                  </Link>
                 </li>
                 <li>
                   <a href="http://124.123.122.137:8080/mindsetts-lv-v2/therapists-directory">
@@ -109,13 +114,15 @@ const Footer = () => {
         <div className="container">
           <div className="footer-logo">
             <div id="branding-bottom">
-              <a className href="http://124.123.122.137:8080/mindsetts-lv-v2">
-                <img
-                  className=" preload-me"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/logo-mindset.png"
-                  alt="Mindsetts Logo"
-                />
-              </a>
+              <Link to="/">
+                <a className>
+                  <img
+                    className=" preload-me"
+                    src="images/logo-mindset.png"
+                    alt="Mindsetts Logo"
+                  />
+                </a>
+              </Link>
             </div>
             <p>Mindsetts - Make choosing the right therapist or coach easy</p>
           </div>
