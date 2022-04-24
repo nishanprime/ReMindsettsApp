@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 
 const Client = () => {
-  return <MainLayout>sad</MainLayout>;
+  return <MainLayout>Client Registration Page</MainLayout>;
 };
 
 export default Client;
