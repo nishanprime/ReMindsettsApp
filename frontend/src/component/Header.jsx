@@ -7,7 +7,7 @@ const header = () => {
       <header>
         <div className="container">
           <nav className="navbar navbar-expand-lg">
-            <Link to="/">
+            <Link className="nav-link" to="/">
               <a className="navbar-brand">
                 <img className=" preload-me" src="/images/logo-mindset.png" />
               </a>
@@ -30,36 +30,40 @@ const header = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item active ">
-                  <Link to="/">
-                    <a className="nav-link">Home</a>
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/">
+                    Home
                   </Link>
                 </li>
                 <li className="nav-item ">
-                  <Link to="/about">
-                    <a className="nav-link">About </a>
+                  <Link className="nav-link" to="/about">
+                    About
                   </Link>
                 </li>
                 <li className="nav-item ">
-                  <Link to="/professionals">
-                    <a className="nav-link">Professionals</a>
+                  <Link className="nav-link" to="/professionals">
+                    Professionals
                   </Link>
                 </li>
 
                 <li className="nav-item ">
-                  <a className="nav-link" href="#">
+                  <Link
+                    className="nav-link"
+                    to="
+                #"
+                  >
                     PODCASTS
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item ">
-                  <Link to="/testimonials">
-                    <a className="nav-link">Testimonials</a>
+                  <Link className="nav-link" to="/testimonials">
+                    Testimonials
                   </Link>
                 </li>
               </ul>
               <div className="header-right">
-                <Link to="/signin">
-                  <a className="btn-border-round">Sign in</a>
+                <Link className="nav-link btn-border-round" to="/signin">
+                  Sign in
                 </Link>
                 <i className="ti-search" id="toggle-search" />
                 <i className="ti-close" id="toggle-close" />

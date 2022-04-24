@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 
 const Home = () => {
@@ -8,8 +9,7 @@ const Home = () => {
         <section
           className="banner_section"
           style={{
-            backgroundImage:
-              'url("http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg")',
+            backgroundImage: 'url("images/banner.jpg")',
           }}
         >
           <div className="container">
@@ -24,31 +24,31 @@ const Home = () => {
               >
                 <img
                   className="app-logo-button"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/app-download-btn.png"
+                  src="images/app-download-btn.png"
                   alt="App Store Image"
                 />
               </a>
               <a href="#">
                 <img
                   className="app-logo-button"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/get_it_on_play_logo_large.png"
+                  src="images/get_it_on_play_logo_large.png"
                   alt="App Store Image"
                 />
               </a>
             </div>
             <div className="banner_bottom_buttons">
-              <a
+              <Link
+                to="/register/professional"
                 className="banner_top_left_btn btn-border-round"
-                href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals-signup-form"
               >
                 Professionals Register here
-              </a>
-              <a
+              </Link>
+              <Link
                 className="banner_top_right_btn btn-border-round"
-                href="http://124.123.122.137:8080/mindsetts-lv-v2/get-matched"
+                to="/register/client"
               >
                 Clients Register here
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -56,12 +56,9 @@ const Home = () => {
           <div className="container">
             <h2>Find the Right Therapist or Coach for You</h2>
             <div className="get_matched_buttons">
-              <a
-                className="btn-border-round"
-                href="http://124.123.122.137:8080/mindsetts-lv-v2/get-matched"
-              >
+              <Link className="btn-border-round" to="/signin">
                 Get Matched
-              </a>
+              </Link>
             </div>
           </div>
         </section>
