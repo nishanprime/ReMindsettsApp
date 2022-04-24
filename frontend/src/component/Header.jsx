@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const header = () => {
   return (
@@ -6,15 +7,11 @@ const header = () => {
       <header>
         <div className="container">
           <nav className="navbar navbar-expand-lg">
-            <a
-              className="navbar-brand"
-              href="http://124.123.122.137:8080/mindsetts-lv-v2"
-            >
-              <img
-                className=" preload-me"
-                src="http://124.123.122.137:8080/mindsetts-lv-v2/images/logo-mindset.png"
-              />
-            </a>
+            <Link to="/">
+              <a className="navbar-brand">
+                <img className=" preload-me" src="/images/logo-mindset.png" />
+              </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -34,50 +31,36 @@ const header = () => {
             >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active ">
-                  <a
-                    className="nav-link"
-                    href="http://124.123.122.137:8080/mindsetts-lv-v2"
-                  >
-                    Home
-                  </a>
+                  <Link to="/">
+                    <a className="nav-link">Home</a>
+                  </Link>
                 </li>
                 <li className="nav-item ">
-                  <a
-                    className="nav-link"
-                    href="http://124.123.122.137:8080/mindsetts-lv-v2/about-us"
-                  >
-                    About{" "}
-                  </a>
+                  <Link to="/about">
+                    <a className="nav-link">About </a>
+                  </Link>
                 </li>
                 <li className="nav-item ">
-                  <a
-                    className="nav-link"
-                    href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals"
-                  >
-                    Professionals
-                  </a>
+                  <Link to="/professionals">
+                    <a className="nav-link">Professionals</a>
+                  </Link>
                 </li>
+
                 <li className="nav-item ">
                   <a className="nav-link" href="#">
                     PODCASTS
                   </a>
                 </li>
                 <li className="nav-item ">
-                  <a
-                    className="nav-link"
-                    href="http://124.123.122.137:8080/mindsetts-lv-v2/testimonials"
-                  >
-                    Testimonials
-                  </a>
+                  <Link to="/testimonials">
+                    <a className="nav-link">Testimonials</a>
+                  </Link>
                 </li>
               </ul>
               <div className="header-right">
-                <a
-                  className="btn-border-round"
-                  href="http://124.123.122.137:8080/mindsetts-lv-v2/sign-in"
-                >
-                  Sign in
-                </a>
+                <Link to="/signin">
+                  <a className="btn-border-round">Sign in</a>
+                </Link>
                 <i className="ti-search" id="toggle-search" />
                 <i className="ti-close" id="toggle-close" />
                 <input
