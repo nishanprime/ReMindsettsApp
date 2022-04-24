@@ -7,7 +7,11 @@ const header = () => {
       <header>
         <div className="container">
           <nav className="navbar navbar-expand-lg">
-            <Link className="nav-link navbar-brand" to="/">
+            <Link
+              className="nav-link navbar-brand"
+              activeClassName="active"
+              to="/"
+            >
               <img className=" preload-me" src="/images/logo-mindset.png" />
             </Link>
             <button
@@ -28,8 +32,10 @@ const header = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/">
+                {/* add active class if Link is active */}
+
+                <li className="nav-item">
+                  <Link className="nav-link" activeClassName="active" to="/">
                     Home
                   </Link>
                 </li>

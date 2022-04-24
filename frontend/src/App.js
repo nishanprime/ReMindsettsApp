@@ -3,12 +3,15 @@ import { Routes, Route } from "react-router-dom";
 import {
   About,
   Client,
+  Contact,
   Home,
+  NotFound,
   Professional,
   Professionals,
   Testimonials,
+  TermsAndConditions,
+  Signin,
 } from "./pages";
-import Signin from "./pages/Signin";
 function App() {
   return (
     <div className="App">
@@ -22,6 +25,10 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="professionals" element={<Professionals />} />
         <Route path="testimonials" element={<Testimonials />} />
+        {/* 404 page route */}
+        <Route path="*" element={<NotFound />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
     </div>
   );
