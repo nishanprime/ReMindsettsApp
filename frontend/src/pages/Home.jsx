@@ -16,8 +16,6 @@ const Home = () => {
             <h2>Choose the Right Therapist or Coach Safely and Easily.</h2>
             <h6> Take Action with our FREE to use Video App</h6>
             <div className="banner_buttons">
-              {/* <a href="#">Apple Store</a>
-                <a href="#">Google Play</a> */}
               <a
                 href="https://apps.apple.com/us/app/mindsetts/id1548697361"
                 target="_blank"
@@ -987,9 +985,6 @@ const Home = () => {
         </div>
       </div>
       <div id="bookDiscoveryCallModelDiv" />
-      <div className="main-loader" id="main-loader" style={{ display: "none" }}>
-        <div className="main-loader-inner" />
-      </div>
     </MainLayout>
   );
 };

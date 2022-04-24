@@ -11,39 +11,27 @@ const Footer = () => {
               <h2>Useful links</h2>
               <ul>
                 <li>
-                  <Link to="/">
-                    <a>Home</a>
-                  </Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/about">
-                    <a>About us</a>
-                  </Link>
+                  <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/professionals">
-                    <a>Professionals</a>
-                  </Link>
+                  <Link to="/professionals">Professionals</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    <a href="#">Podcasts</a>
-                  </Link>
+                  <Link to="#">Podcasts</Link>
                 </li>
                 <li>
-                  <Link to="/testimonials">
-                    <a href="#">Testimonials</a>
-                  </Link>
+                  <Link to="/testimonials">Testimonials</Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/therapists-directory">
+                  <Link to="http://124.123.122.137:8080/mindsetts-lv-v2/therapists-directory">
                     Directory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/contact">
-                    Contact Us
-                  </a>
+                  <Link to="/contact">Contact Us</Link>
                 </li>
               </ul>
             </div>
@@ -51,19 +39,13 @@ const Footer = () => {
               <h2>Other Links</h2>
               <ul>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/terms-of-use">
-                    Terms &amp; Conditions
-                  </a>
+                  <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/privacy-policy">
-                    Privacy&nbsp;
-                  </a>
+                  <Link to="/privacy-policy">Privacy&nbsp;</Link>
                 </li>
                 <li>
-                  <a href="http://124.123.122.137:8080/mindsetts-lv-v2/sitemap">
-                    Sitemap
-                  </a>
+                  <Link to="/sitemap">Sitemap</Link>
                 </li>
               </ul>
             </div>

@@ -7,10 +7,8 @@ const header = () => {
       <header>
         <div className="container">
           <nav className="navbar navbar-expand-lg">
-            <Link className="nav-link" to="/">
-              <a className="navbar-brand">
-                <img className=" preload-me" src="/images/logo-mindset.png" />
-              </a>
+            <Link className="nav-link navbar-brand" to="/">
+              <img className=" preload-me" src="/images/logo-mindset.png" />
             </Link>
             <button
               className="navbar-toggler"
