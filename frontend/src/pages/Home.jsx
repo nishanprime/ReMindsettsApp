@@ -852,31 +852,49 @@ const Home = () => {
               <h2>Why Mindsetts?</h2>
               <ul>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>Free confidential 20 minute discovery calls</span>
                 </li>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>Free and unlimited access to video biographies</span>
                 </li>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>
                     Instantly message your preferred therapist/coach on the app
                   </span>
                 </li>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>
                     Find your perfect match to get the impact you need
                   </span>
                 </li>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>Simple registration process to kickstart change</span>
                 </li>
                 <li>
-                  <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                  <img
+                    alt=" "
+                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                  />
                   <span>
                     Experience who you want to work with before making any kind
                     of commitment
@@ -943,41 +961,59 @@ const Home = () => {
                     <p>Mindsetts will: </p>
                     <ul>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Reserve your time for people you want to reach and
                           deflect the ones you don’t
                         </span>
                       </li>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Save time and make a lasting impact with a 2 minute
                           video
                         </span>
                       </li>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Increase your visibility and boost your referrals
                         </span>
                       </li>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Self promote as much as you want and build your brand
                           and significance at no extra cost
                         </span>
                       </li>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Connect with clients 24/7 and create success while you
                           sleep
                         </span>
                       </li>
                       <li>
-                        <img src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png" />
+                        <img
+                          alt=" "
+                          src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
+                        />
                         <span>
                           Operate in a safe and secure space, keeping you
                           personal details private
