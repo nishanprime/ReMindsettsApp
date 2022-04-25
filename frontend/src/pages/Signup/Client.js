@@ -1,17 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Client = () => {
   // function to handle the next button
   const [step, setStep] = useState(1);
 
-  const handleNext = (step) => {
+  const handleNext = () => {
     // navigate to the next page
     setStep(step + 1);
   };
 
   // function to handle the previous button
-  const handlePrevious = (step) => {
+  const handlePrevious = () => {
     // navigate to the previous page
     setStep(step - 1);
   };
@@ -24,7 +25,8 @@ const Client = () => {
   };
 
   const formSubmit = (e) => {
-    console.log("Form Submitted");
+    // Form Submission
+    e.preventDefault();
   };
 
   return (
@@ -33,7 +35,7 @@ const Client = () => {
         <div className="container">
           <img
             className="banner-img"
-            src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+            src="/images/banner.jpg"
             alt="Banner Image"
           />
         </div>
@@ -56,11 +58,11 @@ const Client = () => {
               information will be kept safe with MindSETTS, there will be no
               follow-up ,spam or pressure to book a session.
             </p>
-            <div className="next-screen-button-part">
-              <a className="btn-next" onClick={handlePrevious}>
-                Back
-              </a>
-              <a className="btn-next" onClick={handleNext}>
+            <div className="next-screen-button-part row">
+              <Link className="btn-next col" to="/">
+                Home
+              </Link>
+              <a className="btn-next col" onClick={handleNext}>
                 Next
               </a>
             </div>
@@ -120,8 +122,11 @@ const Client = () => {
                 </div>
               </div>
               <label id="gender-error" className="error" htmlFor="gender" />
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(3)}>
+              <div className="next-screen-button-part row row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -208,8 +213,11 @@ const Client = () => {
                 className="error"
                 htmlFor="prefer_therapist_gender"
               />
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(4)}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -232,8 +240,11 @@ const Client = () => {
                   required
                 />
               </div>
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(5)}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -261,8 +272,11 @@ const Client = () => {
                   />
                 </div>
               </div>
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(6)}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -378,8 +392,11 @@ const Client = () => {
                 className="error"
                 htmlFor="like_to_improve[]"
               />
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(7)}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -484,8 +501,11 @@ const Client = () => {
                 className="error"
                 htmlFor="life_would_be[]"
               />
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(8)}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
+                </a>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -541,11 +561,11 @@ const Client = () => {
                   />
                 </div>
               </div>
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handleNext(9)}>
-                  back
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
+                  Back
                 </a>
-                <a className="btn-next" onClick={handleNext(9)}>
+                <a className="btn-next col" onClick={handleNext}>
                   Next
                 </a>
               </div>
@@ -565,13 +585,14 @@ const Client = () => {
                 </span>
                 ’, Welcome to Mindsetts. Let’s get you Matched!
               </h2>
-              <div className="next-screen-button-part">
-                <a className="btn-next" onClick={handlePrevious}>
+              <div className="next-screen-button-part row">
+                <a className="btn-next col" onClick={handlePrevious}>
                   Back
                 </a>
+
                 <input
                   type="submit"
-                  className="btn-next"
+                  className="btn-next col"
                   onClick={handleNext}
                 />
               </div>
