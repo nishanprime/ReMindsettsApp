@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import { logout } from "../actions/userActions";
 
 const ProfileAvatar = () => {
-  const dispatch=useDispatch()
-  const logoutHandler=()=>{
-    dispatch(logout())
-  }
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <div className="header-right">
       <Dropdown variant="secondary">
@@ -24,7 +24,7 @@ const ProfileAvatar = () => {
           <Dropdown.Menu>
             <ul className="list-group">
               <li className="list-group-item">
-                <a href="#">Profile</a>
+                <Link to="#">Profile</Link>
               </li>
               <li className="list-group-item">
                 <Button onClick={logoutHandler}>Logout</Button>
