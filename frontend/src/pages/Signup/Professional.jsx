@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Footer } from "../../component";
 import MainLayout from "../../layouts/MainLayout";
 
 const Professional = () => {
+
+const navigate=useNavigate()
+const location=useLocation()
+console.log(location)
+  const params=useParams()
+  // useEffect(() => {
+  //   navigate('/')
+  // }, [])
+  
+
   return (
     <MainLayout>
       <div className="professional-signup-area">
@@ -282,7 +293,9 @@ const Professional = () => {
                     style={{ display: "none" }}
                   />
                 </div>
+               
                 <div className="signin-button-part">
+                  
                   <input
                     type="submit"
                     className="signin-button"

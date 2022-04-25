@@ -1,7 +1,19 @@
-import React from "react";
-import MainLayout from "../../layouts/MainLayout";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import MainLayout from '../../layouts/MainLayout';
+import { login } from '../../actions/userActions';
+const Signin = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-const Signin = () => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+  console.log(props);
+  const loginHandler = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+  };
   return (
     <MainLayout>
       <div className="sign-in-page">
@@ -16,22 +28,20 @@ const Signin = () => {
               be kept safe and completely confidential, there will be no
               follow-up ,spam or pressure to book a session.
             </p>
-            <form
-              action="http://124.123.122.137:8080/mindsetts-lv-v2/sign-in"
-              method="POST"
-              id="sign-in"
-            >
-              <input
+            <form onSubmit={loginHandler}>
+              {/* <input
                 type="hidden"
                 name="_token"
                 defaultValue="p4gLL9gU20elXZfoviUNA94Zig15QIkl5NR8iiBL"
-              />
+              /> */}
               <div className="form-group">
                 <input
                   type="email"
                   name="email"
                   className="form-control"
-                  placeholder="Email:"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -41,7 +51,9 @@ const Signin = () => {
                   name="password"
                   className="form-control"
                   defaultValue
-                  placeholder="Password:"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>

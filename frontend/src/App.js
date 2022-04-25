@@ -1,5 +1,5 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import {
   About,
   Client,
@@ -11,7 +11,7 @@ import {
   Testimonials,
   TermsAndConditions,
   Signin,
-} from "./pages";
+} from './pages';
 function App() {
   return (
     <div className="App">
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="signin" element={<Signin />} />
         <Route path="register">
-          <Route path="professional" element={<Professional />} />
+          <Route path="professional/:id" element={<Professional />} />
           <Route path="client" element={<Client />} />
         </Route>
         <Route path="about" element={<About />} />

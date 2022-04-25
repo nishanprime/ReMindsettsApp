@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 const userSchema = new mongoose.Schema({
-  firstName: {
+  fullName: {
     type: String,
     required: true,
   },
@@ -9,10 +9,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
+
   email: {
     type: String,
     required: true,
@@ -21,81 +18,23 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  city: {
+
+  counselingNeededSector: {
     type: String,
-  },
-  locationId: {
-    type: String,
-  },
-  isEligible: {
-    type: Boolean,
-    default: false,
     required: true,
   },
-  isVerified: {
-    type: Boolean,
-    default: false,
+  probableOutcome: {
+    type: String,
     required: true,
   },
-  photo: {
+  therapistRequirement: {
     type: String,
-  },
-  video: {
-    type: String,
+    required: true,
   },
   gender: {
     type: String,
-  },
-  bio: {
-    type: String,
-  },
-  isPublic: {
-    type: String,
-    default: true,
-  },
-  isWorker: {
-    type: Boolean,
     required: true,
-    default: false,
   },
-  isHirer: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  phone: {
-    type: Number,
-  },
-  companyVat: {
-    type: String,
-  },
-  compnayAddress: {
-    type: String,
-  },
-  compnayPhone: {
-    type: Number,
-  },
-  compnayPhoto: {
-    type: String,
-  },
-  cometUid: {
-    type: String,
-  },
-  promoCode: {
-    type: String,
-  },
-  lastCallsViewTime: {
-    type: String,
-  },
-  isAdmin: {
-    type: String,
-    default: false,
-  },
-  mindsett: {
-    type: String,
-  },
-  timeZone: { type: String },
-  accrediations: { type: String },
 });
 
 //do not use arrow function here since on doing so

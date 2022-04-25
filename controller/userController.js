@@ -7,17 +7,18 @@ import generateToken from '../utils/generateToken.js';
 //access to public
 
 const authUser = asyncHandler(async (req, res) => {
-  const { username, password } = req.body;
-  const user = await UserModel.findOne({ username });
+  const { email, password } = req.body;
+  const user = await UserModel.findOne({ email });
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: `${user.firstName} ${user.lastName}`,
+      name: user.fullName,
       username: user.username,
+      email: user.email,
       token: generateToken(user._id),
     });
   } else {
-    res.status(401).send({ message: 'Invalid username or password' });
+    res.status(401).send({ message: 'Invalid email or password' });
   }
 });
 
@@ -27,12 +28,15 @@ const authUser = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   // try {
-  const { firstName, lastName, email, password, city, locationId, username } =
-    req.body;
-  // } catch (error) {
-  //   res.status(400);
-  //   throw new Error(error.message);
-  // }
+  const {
+    fullName,
+    counselingNeededSector,
+    probableOutcome,
+    email,
+    password,
+    username,
+  } = req.body;
+
   const userExists = await UserModel.findOne({ email });
 
   if (userExists) {
@@ -41,20 +45,18 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await UserModel.create({
-    firstName,
-    lastName,
+    fullName,
     email,
     password,
-    city,
-    locationId,
     username,
   });
-  console.log(user);
+
   if (user) {
     res.json({
       _id: user._id,
-      name: `${user.firstName} ${user.lastName}`,
+      name: user.fullName,
       username: user.username,
+      email: user.email,
       token: generateToken(user._id),
     });
   } else {
