@@ -7,7 +7,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;
@@ -10607,10 +10606,10 @@ header .navbar .header-right .ti-search {
 header .navbar .header-right a {
   display: block;
   border: 3px solid #ade8f4;
-  color: #ade8f4;
+  color: black;
   font-weight: bold;
   padding: 5px 20px;
-  background-color: transparent;
+  background-color: #ade8f4;
   transition: all 0.5s ease;
 }
 header .navbar .header-right a:hover {

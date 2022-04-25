@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import ProfileAvatar from "./ProfileAvatar";
 
 const header = () => {
+  // isactive for link
+
   return (
     <>
       <header>
@@ -34,10 +37,10 @@ const header = () => {
               <ul className="navbar-nav ml-auto">
                 {/* add active class if Link is active */}
 
-                <li className="nav-item">
-                  <Link className="nav-link" activeClassName="active" to="/">
+                <li className={`nav-item`}>
+                  <NavLink className="nav-link" to="/">
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item ">
                   <Link className="nav-link" to="/about">
@@ -69,16 +72,10 @@ const header = () => {
                 <Link className="nav-link btn-border-round" to="/signin">
                   Sign in
                 </Link>
-                <i className="ti-search" id="toggle-search" />
-                <i className="ti-close" id="toggle-close" />
-                <input
-                  style={{ display: "none" }}
-                  id="searchBar"
-                  name="search"
-                  type="search"
-                  placeholder="Search…"
-                />
               </div>
+
+              {/* if signed in show the avatar */}
+              <ProfileAvatar />
             </div>
           </nav>
         </div>
