@@ -3,6 +3,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQ,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQ,
   USER_REGISTER_SUCCESS,
@@ -76,3 +77,9 @@ export const register =
       });
     }
   };
+
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem('userInfo');
+  dispatch({ type: USER_LOGOUT });
+  document.location.href = '/';
+};

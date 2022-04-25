@@ -4,7 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 
 const Home = () => {
   return (
-    <MainLayout>
+    <>
       <div className="home">
         <section
           className="banner_section"
@@ -985,7 +985,7 @@ const Home = () => {
         </div>
       </div>
       <div id="bookDiscoveryCallModelDiv" />
-    </MainLayout>
+    </>
   );
 };
 

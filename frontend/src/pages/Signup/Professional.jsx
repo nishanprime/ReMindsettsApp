@@ -15,7 +15,7 @@ console.log(location)
   
 
   return (
-    <MainLayout>
+    <>
       <div className="professional-signup-area">
         <div className="professional-signup-section">
           <div className="container">
@@ -310,7 +310,7 @@ console.log(location)
       <div className="main-loader" id="main-loader" style={{ display: "none" }}>
         <div className="main-loader-inner" />
       </div>
-    </MainLayout>
+      </>
   );
 };
 

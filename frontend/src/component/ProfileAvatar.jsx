@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { logout } from "../actions/userActions";
 
 const ProfileAvatar = () => {
+  const dispatch=useDispatch()
+  const logoutHandler=()=>{
+    dispatch(logout())
+  }
   return (
     <div className="header-right">
       <Dropdown variant="secondary">
@@ -21,7 +27,7 @@ const ProfileAvatar = () => {
                 <a href="#">Profile</a>
               </li>
               <li className="list-group-item">
-                <Link to="/logout">Logout</Link>
+                <Button onClick={logoutHandler}>Logout</Button>
               </li>
             </ul>
           </Dropdown.Menu>

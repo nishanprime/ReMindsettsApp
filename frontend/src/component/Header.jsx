@@ -1,10 +1,11 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "./ProfileAvatar";
 
-const header = () => {
-  // isactive for link
-
+const Header = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+const {userInfo}=userLogin
   return (
     <>
       <header>
@@ -68,14 +69,19 @@ const header = () => {
                   </Link>
                 </li>
               </ul>
-              <div className="header-right">
+              {userInfo?(
+                             <ProfileAvatar />
+
+              ):(
+                <div className="header-right">
                 <Link className="nav-link btn-border-round" to="/signin">
                   Sign in
                 </Link>
               </div>
+              )}
+             
 
               {/* if signed in show the avatar */}
-              <ProfileAvatar />
             </div>
           </nav>
         </div>
@@ -84,4 +90,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

@@ -1,8 +1,8 @@
-import React from "react";
-import MainLayout from "../layouts/MainLayout";
+import React from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 const TermsAndConditions = () => {
-  return <MainLayout>TermsAndConditions</MainLayout>;
+  return <>TermsAndConditions</>;
 };
 
 export default TermsAndConditions;

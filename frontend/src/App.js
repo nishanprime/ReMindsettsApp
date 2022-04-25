@@ -12,9 +12,12 @@ import {
   TermsAndConditions,
   Signin,
 } from './pages';
+import MainLayout from './layouts/MainLayout';
+import { Footer, Header } from './component';
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="signin" element={<Signin />} />
@@ -30,6 +33,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

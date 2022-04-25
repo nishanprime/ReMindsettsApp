@@ -1,8 +1,8 @@
-import React from "react";
-import MainLayout from "../layouts/MainLayout";
+import React from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 const Contact = () => {
-  return <MainLayout>Contact Us</MainLayout>;
+  return <>Contact Us</>;
 };
 
 export default Contact;

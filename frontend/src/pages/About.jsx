@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 
 const About = () => {
   return (
-    <MainLayout>
+    <>
       <div className="about-area">
         <div className="about-banner-section">
           <div className="container">
@@ -154,7 +154,7 @@ const About = () => {
       <div className="main-loader" id="main-loader" style={{ display: "none" }}>
         <div className="main-loader-inner" />
       </div>
-    </MainLayout>
+    </>
   );
 };
 export default About;

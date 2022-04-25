@@ -1,9 +1,9 @@
-import React from "react";
-import MainLayout from "../layouts/MainLayout";
+import React from 'react';
+import MainLayout from '../layouts/MainLayout';
 
 const Testimonials = () => {
   return (
-    <MainLayout>
+    <>
       <div className="testimonials-page-area">
         <div
           className="testimonials-banner-section"
@@ -73,13 +73,13 @@ const Testimonials = () => {
           <div
             className="main-loader"
             id="main-loader"
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
           >
             <div className="main-loader-inner" />
           </div>
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 };
 
