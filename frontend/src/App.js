@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="signin" element={<Signin />} />
         <Route path="register">
-          <Route path="professional/:id" element={<Professional />} />
+          <Route path="professional" element={<Professional />} />
           <Route path="client" element={<Client />} />
         </Route>
         <Route path="about" element={<About />} />

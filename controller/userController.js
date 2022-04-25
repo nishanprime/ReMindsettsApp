@@ -23,11 +23,10 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 //register a new user
-//POST req to /api/users/login
+//POST req to /api/users/register
 //access to public
 
 const registerUser = asyncHandler(async (req, res) => {
-  // try {
   const {
     fullName,
     counselingNeededSector,
@@ -35,6 +34,8 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     username,
+    therapistRequirement,
+    gender,
   } = req.body;
 
   const userExists = await UserModel.findOne({ email });
@@ -46,9 +47,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const user = await UserModel.create({
     fullName,
+    counselingNeededSector,
+    probableOutcome,
     email,
     password,
     username,
+    therapistRequirement,
+    gender,
   });
 
   if (user) {

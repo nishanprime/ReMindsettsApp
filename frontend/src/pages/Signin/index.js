@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import MainLayout from '../../layouts/MainLayout';
 import { login } from '../../actions/userActions';
+import { Loader } from '../../component';
 const Signin = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('thapanishan9@gmail.com');
+  const [password, setPassword] = useState('12345');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
   console.log(props);
@@ -14,6 +17,13 @@ const Signin = (props) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [userInfo, navigate]);
+
   return (
     <MainLayout>
       <div className="sign-in-page">
@@ -57,13 +67,18 @@ const Signin = (props) => {
                   required
                 />
               </div>
-              <div className="signin-button-part">
-                <input
-                  type="submit"
-                  className="signin-button"
-                  defaultValue="Sign In"
-                />
-              </div>
+              {error && <h1>{error}</h1>}
+              {loading ? (
+                <h1>Loading...</h1>
+              ) : (
+                <div className="signin-button-part">
+                  <input
+                    type="submit"
+                    className="signin-button"
+                    defaultValue="Sign In"
+                  />
+                </div>
+              )}
             </form>
           </div>
         </div>

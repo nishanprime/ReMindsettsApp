@@ -9,7 +9,6 @@ import {
 } from '../constants/userConstants';
 
 export const login = (email, password) => async (dispatch) => {
-  console.log(email, password);
   try {
     dispatch({
       type: USER_LOGIN_REQ,
@@ -24,6 +23,7 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+    console.log(data);
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
