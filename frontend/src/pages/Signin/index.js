@@ -5,8 +5,8 @@ import MainLayout from '../../layouts/MainLayout';
 import { login } from '../../actions/userActions';
 import { Loader } from '../../component';
 const Signin = (props) => {
-  const [email, setEmail] = useState('thapanishan9@gmail.com');
-  const [password, setPassword] = useState('12345');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -2,9 +2,9 @@
 //POST req to /api/professional/register
 //access to public
 
-import ProfessionalModel from '../models/professionalModel.js';
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
+import UserModel from '../models/userModel.js';
 export const registerProfessional = asyncHandler(async (req, res) => {
   const {
     firstName,
@@ -20,6 +20,7 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     membership,
     payment,
     intro,
+    isTherapist,
   } = req.body;
   const expertiseArray = [
     'Hypnobirthing',
@@ -61,33 +62,33 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     'Fertility',
   ];
 
-  const professionalExists = await ProfessionalModel.findOne({ email });
+  const professionalExists = await UserModel.findOne({ email });
+
   if (professionalExists) {
     res.status(400);
     throw new Error('Professional account already exists');
   }
+  // console.log(req.body);
   const entryData = {
-    firstName,
-    lastName,
+    fullName: `${firstName} ${lastName}`,
+    isTherapist,
     email,
-    phone,
     password,
     gender,
+    phone,
     insured,
     bio,
-    expertise: expertiseArray[expertise],
+    expertise: expertiseArray[parseInt(expertise)],
     businessName,
     membership,
     payment,
     intro,
   };
-  console.log(entryData);
-  const professional = await ProfessionalModel.create(entryData);
+  const professional = await UserModel.create(entryData);
   if (professional) {
     res.json({
       _id: professional._id,
-      firstName: professional.firstName,
-      lastName: professional.lastName,
+      fullName: professional.fullName,
       email: professional.email,
       phone: professional.phone,
       gender: professional.gender,
@@ -99,6 +100,7 @@ export const registerProfessional = asyncHandler(async (req, res) => {
       payment: professional.payment,
       intro: professional.intro,
       token: generateToken(professional._id),
+      isTherapist: professional.isTherapist,
     });
   } else {
     res.status(400).send({ message: 'Invalid professional data' });
@@ -106,7 +108,10 @@ export const registerProfessional = asyncHandler(async (req, res) => {
 });
 
 export const getAllProfessional = asyncHandler(async (req, res) => {
-  const professional = await ProfessionalModel.find().select('-password');
+  const professional = await UserModel.find({ isTherapist: true }).select(
+    '-password'
+  );
+  console.log(professional);
   if (professional) {
     res.status(200);
     res.json(professional);

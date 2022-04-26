@@ -89,7 +89,7 @@ const Home = () => {
                     /> */}
                   </div>
                   <div className="therapists_text">
-                    <h2>{`${eachProf.firstName} ${eachProf.lastName}`}</h2>
+                    <h2>{`${eachProf.fullName}`}</h2>
                     <p>{`Specialising in: ${eachProf.expertise}`}</p>
                     <span className="online">Online</span>
                   </div>

@@ -7,12 +7,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
+  isTherapist: {
     type: String,
     required: true,
-    unique: true,
+    default: false,
   },
-
+  username: {
+    type: String,
+    unique: true,
+    default: Date.now(),
+  },
   email: {
     type: String,
     required: true,
@@ -22,22 +26,41 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  counselingNeededSector: {
-    type: String,
-    required: true,
+  aspectToImprove: {
+    type: [String],
   },
-  probableOutcome: {
-    type: String,
-    required: true,
+  desiredOutcome: {
+    type: [String],
   },
-  therapistRequirement: {
+  therapistGender: {
     type: String,
-    required: true,
   },
   gender: {
     type: String,
-    required: true,
+  },
+  phone: {
+    type: Number,
+  },
+  insured: {
+    type: Boolean,
+  },
+  bio: {
+    type: String,
+  },
+  expertise: {
+    type: String,
+  },
+  businessName: {
+    type: String,
+  },
+  membership: {
+    type: String,
+  },
+  intro: {
+    type: String,
+  },
+  payment: {
+    type: String,
   },
 });
 

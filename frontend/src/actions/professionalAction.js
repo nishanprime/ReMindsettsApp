@@ -43,7 +43,7 @@ export const register = (requiredFields) => async (dispatch) => {
 
     const { data } = await axios.post(
       '/api/professional/register',
-      requiredFields,
+      { ...requiredFields, isTherapist: true },
       config
     );
     dispatch({
