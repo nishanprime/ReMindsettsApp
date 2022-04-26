@@ -210,10 +210,7 @@ const Home = () => {
                       </span>
                     </li>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="check-circle.png" />
                       <span>
                         Save time and make a lasting impact with a 2 minute
                         video

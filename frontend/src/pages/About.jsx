@@ -15,7 +15,7 @@ const About = () => {
               <div className="col-md-6">
                 <img
                   className="banner-img"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                  src="images/banner.jpg"
                   alt="Banner Image"
                 />
               </div>
@@ -61,7 +61,7 @@ const About = () => {
               <div className="avtar-block">
                 <img
                   className="founder-avtar"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                  src="images/banner.jpg"
                   alt="Tina"
                 />
                 <h6>Tina</h6>
@@ -69,7 +69,7 @@ const About = () => {
               <div className="avtar-block">
                 <img
                   className="founder-avtar"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                  src="images/user-placeholder.jpg"
                   alt="Sian"
                 />
                 <h6>Sian</h6>
@@ -119,10 +119,7 @@ const About = () => {
           </div>
         </div>
         <div className="about-single-image-section">
-          <img
-            src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
-            alt="Background Full Image"
-          />
+          <img src="images/banner.jpg" alt="Background Full Image" />
         </div>
         <div className="about-client-words">
           <div className="container">
