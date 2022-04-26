@@ -1,5 +1,5 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import React from "react";
+import MainLayout from "../layouts/MainLayout";
 
 const Professionals = () => {
   return (
@@ -11,17 +11,17 @@ const Professionals = () => {
               <div className="col-md-6">
                 <h1>Mindsetts for Therapists and Coaches</h1>
                 <p>Creating a safe space for you to do business.</p>
-                <a
+                <Link
                   className="banner-button-link btn-border-round"
-                  href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals-signup-form"
+                  to="register/professional"
                 >
                   Let’s Do It
-                </a>
+                </Link>
               </div>
               <div className="col-md-6">
                 <img
                   className="banner-img"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                  src="images/banner.jpg"
                   alt="Banner Image"
                 />
               </div>
@@ -59,7 +59,7 @@ const Professionals = () => {
               <div className="col-md-6">
                 <img
                   className="benefit-img"
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                  src="images/banner.jpg"
                   alt="Banner Image"
                 />
               </div>
@@ -70,15 +70,12 @@ const Professionals = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <a
-                  href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals-signup-form"
-                  className="memebership-box"
-                >
+                <Link to="register/professional" className="memebership-box">
                   <div className="inner-area">
                     <h2>ANNUAL MEMBERSHIP</h2>
                     <div className="memebership-content">
                       <img
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                        src="images/banner.jpg"
                         className="membership-image"
                         alt="Membership Image"
                       />
@@ -104,18 +101,15 @@ const Professionals = () => {
                     </div>
                     <h6>£179</h6>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="col-md-6">
-                <a
-                  href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals-signup-form"
-                  className="memebership-box"
-                >
+                <Link to="/register/professional" className="memebership-box">
                   <div className="inner-area">
                     <h2>MONTHLY MEMBERSHIP</h2>
                     <div className="memebership-content">
                       <img
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                        src="images/user-placeholder.jpg"
                         className="membership-image"
                         alt="Membership Image"
                       />
@@ -135,7 +129,7 @@ const Professionals = () => {
                     </div>
                     <h6>£15.99</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -187,7 +181,7 @@ const Professionals = () => {
                   </div>
                   <div className="col-md-6">
                     <img
-                      src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                      src="images/user-placeholder.jpg"
                       className="package-image"
                       alt="Package Image"
                     />
@@ -204,7 +198,7 @@ const Professionals = () => {
                   </div>
                   <div className="col-md-6">
                     <img
-                      src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                      src="images/banner.jpg"
                       className="package-image"
                       alt="Package Image"
                     />
@@ -221,7 +215,7 @@ const Professionals = () => {
                   </div>
                   <div className="col-md-6">
                     <img
-                      src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                      src="images/banner.jpg"
                       className="package-image"
                       alt="Package Image"
                     />
@@ -238,7 +232,7 @@ const Professionals = () => {
                   </div>
                   <div className="col-md-6">
                     <img
-                      src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                      src="images/user-placeholder.jpg"
                       className="package-image"
                       alt="Package Image"
                     />
@@ -253,13 +247,15 @@ const Professionals = () => {
             <iframe
               className="video-yt"
               src="https://www.youtube.com/embed/Vgd24U8c4Nw"
-              frameBorder={0}
-              allowFullScreen
-            />
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
-      <div className="main-loader" id="main-loader" style={{ display: 'none' }}>
+      <div className="main-loader" id="main-loader" style={{ display: "none" }}>
         <div className="main-loader-inner" />
       </div>
     </>
