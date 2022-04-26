@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PROFESSIONAL_LOGOUT } from '../constants/professionalConstants';
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQ,
@@ -24,7 +25,6 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-    console.log(data);
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
@@ -80,6 +80,8 @@ export const register =
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
+  localStorage.removeItem('professionalInfo');
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: PROFESSIONAL_LOGOUT });
   document.location.href = '/';
 };

@@ -12,6 +12,15 @@ const professionalSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+  },
+  phone: {
+    type: Number,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   gender: {
     type: String,
@@ -29,8 +38,37 @@ const professionalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  businessName: {
+    type: String,
+    required: true,
+  },
   membership: {
     type: String,
     required: true,
   },
+  intro: {
+    type: String,
+    required: true,
+  },
+  payment: {
+    type: String,
+    required: true,
+  },
 });
+
+//do not use arrow function here since on doing so
+//the value of this.password would be different
+professionalSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+professionalSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+const Professional = mongoose.model('Professional', professionalSchema);
+
+export default Professional;

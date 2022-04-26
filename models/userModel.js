@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 const userSchema = new mongoose.Schema({
+  //true means client;false means professional or therapist
+
   fullName: {
     type: String,
     required: true,

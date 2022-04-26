@@ -8,9 +8,9 @@ import UserModel from '../models/userModel.js';
 const uploadImageController = asyncHandler(async (req, res) => {
   const user = await UserModel.findById(req.user._id);
   if (user) {
-    res.json({
-      uploaded: 'Image Successfully uploaded',
-    });
+    if (req.file === undefined) return res.send('You must select a file');
+    const imageUrl = `http://localhost:8000/${req.file.filename}`;
+    return res.send(imageUrl);
   } else {
     res.status(401);
     throw new Error('Unauthorized');

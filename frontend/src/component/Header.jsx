@@ -6,6 +6,9 @@ import ProfileAvatar from "./ProfileAvatar";
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
 const {userInfo}=userLogin
+
+  const professionalLogin = useSelector((state) => state.professionalLogin);
+const {professionalInfo}=professionalLogin
   return (
     <>
       <header>
@@ -69,7 +72,7 @@ const {userInfo}=userLogin
                   </Link>
                 </li>
               </ul>
-              {userInfo?(
+              {userInfo || professionalInfo?(
                              <ProfileAvatar />
 
               ):(
