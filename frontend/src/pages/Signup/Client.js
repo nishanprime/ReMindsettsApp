@@ -1,13 +1,60 @@
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../actions/userActions';
 const Client = () => {
   // function to handle the next button
   const [step, setStep] = useState(1);
+  const [gender, setGender] = useState();
+  const [therapistGender, settherapistGender] = useState();
+  const [fullName, setFullName] = useState();
+  const [aspectImprove, setAspectImprove] = useState([]);
+  const [desiredOutcome, setDesiredOutcome] = useState([]);
+  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [userInfo, navigate]);
   const handleNext = () => {
     // navigate to the next page
+    if (step === 6) {
+      let aspectToImprove = document.getElementById('aspect-to-improve');
+      let checks = aspectToImprove.getElementsByTagName('input');
+      setAspectImprove([]);
+      let newAr = [];
+      for (let i = 0; i < checks.length; i++) {
+        if (checks[i].checked) {
+          newAr.push(checks[i].value);
+        }
+      }
+      setAspectImprove(newAr);
+      newAr = [];
+    }
+    if (step === 7) {
+      let desiredOutcomes = document.getElementById('desired-outcome');
+      let checks = desiredOutcomes.getElementsByTagName('input');
+      setDesiredOutcome([]);
+      let newAr = [];
+
+      for (let i = 0; i < checks.length; i++) {
+        if (checks[i].checked) {
+          newAr.push(checks[i].value);
+        }
+      }
+      setDesiredOutcome(newAr);
+    }
+
     setStep(step + 1);
   };
 
@@ -17,16 +64,27 @@ const Client = () => {
     setStep(step - 1);
   };
 
-  const name = "Bipin";
+  const name = 'Bipin';
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     return e.target.value;
   };
 
   const formSubmit = (e) => {
     // Form Submission
     e.preventDefault();
+    dispatch(
+      register(
+        gender,
+        therapistGender,
+        fullName,
+        aspectImprove,
+        desiredOutcome,
+        email,
+        password,
+        username
+      )
+    );
   };
 
   return (
@@ -86,7 +144,7 @@ const Client = () => {
                     defaultValue="male"
                     id="gendarButton1"
                     required
-                    onChange={handleChange}
+                    onChange={(e) => setGender(e.target.value)}
                   />
                   <label className="form-check-label" htmlFor="gendarButton1">
                     Male
@@ -100,7 +158,7 @@ const Client = () => {
                     defaultValue="female"
                     id="gendarButton2"
                     required
-                    onChange={handleChange}
+                    onChange={(e) => setGender(e.target.value)}
                   />
                   <label className="form-check-label" htmlFor="gendarButton2">
                     Female
@@ -114,7 +172,7 @@ const Client = () => {
                     defaultValue="other"
                     id="gendarButton3"
                     required
-                    onChange={handleChange}
+                    onChange={(e) => setGender(e.target.value)}
                   />
                   <label className="form-check-label" htmlFor="gendarButton3">
                     Other
@@ -151,6 +209,7 @@ const Client = () => {
                     defaultValue="male"
                     id="gendarTherapistButton1"
                     required
+                    onChange={(e) => settherapistGender(e.target.value)}
                   />
                   <label
                     className="form-check-label"
@@ -167,6 +226,7 @@ const Client = () => {
                     defaultValue="female"
                     id="gendarTherapistButton2"
                     required
+                    onChange={(e) => settherapistGender(e.target.value)}
                   />
                   <label
                     className="form-check-label"
@@ -183,6 +243,7 @@ const Client = () => {
                     defaultValue="other"
                     id="gendarTherapistButton3"
                     required
+                    onChange={(e) => settherapistGender(e.target.value)}
                   />
                   <label
                     className="form-check-label"
@@ -199,6 +260,7 @@ const Client = () => {
                     defaultValue="no_preference"
                     id="gendarTherapistButton3"
                     required
+                    onChange={(e) => settherapistGender(e.target.value)}
                   />
                   <label
                     className="form-check-label"
@@ -235,9 +297,10 @@ const Client = () => {
                   type="text"
                   className="form-control"
                   name="name"
-                  defaultValue
+                  defaultValue={fullName}
                   placeholder="What’s your name"
                   required
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </div>
               <div className="next-screen-button-part row">
@@ -259,8 +322,8 @@ const Client = () => {
               <div className="row">
                 <div className="col-md-7">
                   <h2>
-                    ‘<span className="entered_name" />
-                    ’, it’s a pleasure to meet you!
+                    ‘<span className="entered_name" />’{fullName}, it’s a
+                    pleasure to meet you!
                   </h2>
                   <p>Just a few more questions, then we’ll get you matched</p>
                 </div>
@@ -289,7 +352,7 @@ const Client = () => {
           <div id="screen6" className="get-match-screen screen6">
             <div className="container">
               <h2>What aspect of your life would you like to improve?</h2>
-              <div className="custom-checkbox-button">
+              <div className="custom-checkbox-button" id="aspect-to-improve">
                 <div className="form-check">
                   <input
                     className="form-check-input"
@@ -412,7 +475,7 @@ const Client = () => {
                 What would your life look like once you’ve overcome what’s
                 holding you back?
               </h2>
-              <div className="custom-checkbox-button">
+              <div className="custom-checkbox-button" id="desired-outcome">
                 <div className="form-check">
                   <input
                     className="form-check-input"
@@ -525,8 +588,9 @@ const Client = () => {
                     className="form-control"
                     name="email"
                     placeholder="Email:"
-                    defaultValue
+                    defaultValue={email}
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <label id="email-error" className="error" htmlFor="email" />
                 </div>
@@ -536,7 +600,8 @@ const Client = () => {
                     className="form-control"
                     name="username"
                     placeholder="Username:"
-                    defaultValue
+                    defaultValue={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                   />
                   <label
@@ -551,7 +616,8 @@ const Client = () => {
                     className="form-control"
                     name="password"
                     placeholder="Password:"
-                    defaultValue
+                    defaultValue={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                   <label
@@ -581,7 +647,7 @@ const Client = () => {
                 ‘
                 <span className="entered_name">
                   {/* Get name from state */}
-                  {name}
+                  {fullName}
                 </span>
                 ’, Welcome to Mindsetts. Let’s get you Matched!
               </h2>
@@ -590,11 +656,7 @@ const Client = () => {
                   Back
                 </a>
 
-                <input
-                  type="submit"
-                  className="btn-next col"
-                  onClick={handleNext}
-                />
+                <input type="submit" className="btn-next col" />
               </div>
             </div>
           </div>

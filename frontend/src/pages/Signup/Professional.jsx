@@ -1,18 +1,83 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { register } from "../../actions/professionalAction";
 import { Footer } from "../../component";
 import MainLayout from "../../layouts/MainLayout";
 
 const Professional = () => {
 
+
+const [firstName,setFirstName]=useState('')
+const [lastName,setLastName]=useState('')
+const [email,setEmail]=useState('')
+const [phone,setPhone]=useState('')
+const [password,setPassword]=useState('')
+const [gender,setGender]=useState()
+const [insured,setInsured]=useState()
+const [bio,setBio]=useState('')
+const [expertise,setExpertise]=useState()
+const [uploading,setUploading]=useState()
+const [businessName,setBusinessName]=useState('')
+const [membership,setMembership]=useState()
+const [payment,setPayment]=useState()
+const [intro,setIntro]=useState()
+
+const dispatch=useDispatch()
+
+
+const professionalLogin = useSelector((state) => state.professionalLogin);
+const { profLoading, profError, professionalInfo } = professionalLogin;
+
 const navigate=useNavigate()
-const location=useLocation()
-console.log(location)
-  const params=useParams()
-  // useEffect(() => {
-  //   navigate('/')
-  // }, [])
+useEffect(() => {
+  if ( professionalInfo) {
+    navigate('/');
+  }
+}, [ professionalInfo, navigate]);
+
+const uploadFileHandler=async(e)=>{
+  e.preventDefault()
+  const file=e.target.files[0]
+  const formData=new FormData()
+  formData.append('intro',file)
+  setUploading(true)
+  try {
+    const config={
+      headers:{
+        'Content-Type':'multipart/form-data'
+      }
+    }
+    const {data}=await axios.post('/api/uploads',formData,config)
+    setIntro(data)
+    setUploading(false)
+  } catch (error) {
+    setUploading(false)
+  }
+}
+
+const handleRegistrationFormSubmit=(e)=>{
+  e.preventDefault()
+  const data={
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    gender,
+    insured:insured==="Yes"?true:false,
+    bio,
+    expertise,
+    uploading,
+    businessName,
+    membership,
+    payment,
+    intro
+  }
   
+dispatch(register(data))
+}
 
   return (
     <>
@@ -34,6 +99,7 @@ console.log(location)
                 method="POST"
                 id="professionals-signup-form"
                 encType="multipart/form-data"
+                onSubmit={handleRegistrationFormSubmit}
               >
                 <input
                   type="hidden"
@@ -47,6 +113,8 @@ console.log(location)
                     name="first_name"
                     placeholder="First Name"
                     required
+                    value={firstName}
+                    onChange={e=>setFirstName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -56,6 +124,8 @@ console.log(location)
                     name="last_name"
                     placeholder="Last Name"
                     required
+                    value={lastName}
+                    onChange={e=>setLastName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -65,6 +135,8 @@ console.log(location)
                     name="email"
                     placeholder="Email"
                     required
+                    value={email}
+                    onChange={e=>setEmail(e.target.value)}
                   />
                   <label
                     id="email-error"
@@ -80,6 +152,8 @@ console.log(location)
                     name="phone"
                     placeholder="Phone"
                     required
+                    value={phone}
+                    onChange={e=>setPhone(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -89,6 +163,8 @@ console.log(location)
                     name="password"
                     placeholder="Password"
                     required
+                    value={password}
+                    onChange={e=>setPassword(e.target.value)}
                   />
                   <label
                     id="password-error"
@@ -103,6 +179,7 @@ console.log(location)
                     id="OptionSelect1"
                     name="gender"
                     required
+                    onChange={(e)=>setGender(e.target.value)}
                   >
                     <option value hidden>
                       Select Gender
@@ -118,6 +195,8 @@ console.log(location)
                     id="OptionSelect2"
                     name="insured"
                     required
+
+                    onChange={e=>setInsured(e.target.value)}
                   >
                     <option value hidden>
                       Are you insured?
@@ -134,6 +213,8 @@ console.log(location)
                     rows={5}
                     required
                     defaultValue={""}
+                    value={bio}
+                    onChange={e=>setBio(e.target.value)}
                   />
                 </div>
                 <div className="form-group specialities">
@@ -143,6 +224,7 @@ console.log(location)
                     name="specialities[]"
                     multiple="multiple"
                     required
+                    onChange={e=>setExpertise(e.target.value)}
                   >
                     <option value={1}>Hypnobirthing</option>
                     <option value={2}>Depression</option>
@@ -196,6 +278,8 @@ console.log(location)
                     placeholder="Business Name"
                     name="business_name"
                     required
+                    value={businessName}
+                    onChange={e=>setBusinessName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -204,8 +288,10 @@ console.log(location)
                     type="file"
                     accept="video/*"
                     name="video_upload"
+                    onChange={uploadFileHandler}
                     required
                   />
+                  {uploading && <h1>Uploading...</h1>}
                 </div>
                 <div className="form-group">
                   <p className="small-title">Membership</p>
@@ -218,6 +304,7 @@ console.log(location)
                         name="member_ship"
                         id="memberShipPlan1"
                         required
+                        onChange={(e)=>setMembership(e.target.value)}
                       />
                       <label
                         className="form-check-label"
@@ -234,6 +321,8 @@ console.log(location)
                         name="member_ship"
                         id="memberShipPlan2"
                         required
+                        onChange={(e)=>setMembership(e.target.value)}
+
                       />
                       <label
                         className="form-check-label"
@@ -261,6 +350,8 @@ console.log(location)
                         defaultValue="paypal"
                         id="paymentMethod1"
                         required
+                        onChange={(e)=>setPayment(e.target.value)}
+
                       />
                       <label
                         className="form-check-label"
@@ -277,6 +368,8 @@ console.log(location)
                         defaultValue="debitcard"
                         id="paymentMethod2"
                         required
+                        onChange={(e)=>setPayment(e.target.value)}
+
                       />
                       <label
                         className="form-check-label"

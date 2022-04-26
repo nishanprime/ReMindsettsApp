@@ -28,14 +28,14 @@ const authUser = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const {
+    gender,
+    therapistGender,
     fullName,
-    counselingNeededSector,
-    probableOutcome,
+    aspectToImprove,
+    desiredOutcome,
     email,
     password,
     username,
-    therapistRequirement,
-    gender,
   } = req.body;
 
   const userExists = await UserModel.findOne({ email });
@@ -46,14 +46,15 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await UserModel.create({
+    gender,
+    therapistGender,
     fullName,
-    counselingNeededSector,
-    probableOutcome,
+    aspectToImprove,
+    desiredOutcome,
     email,
     password,
     username,
-    therapistRequirement,
-    gender,
+    isTherapist: false,
   });
 
   if (user) {
@@ -62,6 +63,10 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.fullName,
       username: user.username,
       email: user.email,
+      isTherapist: false,
+      desiredOutcome: user.desiredOutcome,
+      therapistGender: user.therapistGender,
+      aspectToImprove: user.aspectToImprove,
       token: generateToken(user._id),
     });
   } else {

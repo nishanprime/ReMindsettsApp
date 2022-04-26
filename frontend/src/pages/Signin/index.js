@@ -5,24 +5,26 @@ import MainLayout from '../../layouts/MainLayout';
 import { login } from '../../actions/userActions';
 import { Loader } from '../../component';
 const Signin = (props) => {
-  const [email, setEmail] = useState('thapanishan9@gmail.com');
-  const [password, setPassword] = useState('12345');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-  console.log(props);
+
+  const professionalLogin = useSelector((state) => state.professionalLogin);
+  const { profLoading, profError, professionalInfo } = professionalLogin;
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo || professionalInfo) {
       navigate('/');
     }
-  }, [userInfo, navigate]);
+  }, [userInfo, professionalInfo, navigate]);
 
   return (
     <div className="sign-in-page">
@@ -66,8 +68,8 @@ const Signin = (props) => {
                 required
               />
             </div>
-            {error && <h1>{error}</h1>}
-            {loading ? (
+            {error || (profError && <h1>{error || profError}</h1>)}
+            {loading || profLoading ? (
               <h1>Loading...</h1>
             ) : (
               <div className="signin-button-part">
