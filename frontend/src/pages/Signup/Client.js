@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../actions/userActions';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../actions/userActions";
 const Client = () => {
   // function to handle the next button
   const [step, setStep] = useState(1);
@@ -23,14 +23,14 @@ const Client = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      navigate("/");
     }
   }, [userInfo, navigate]);
   const handleNext = () => {
     // navigate to the next page
     if (step === 6) {
-      let aspectToImprove = document.getElementById('aspect-to-improve');
-      let checks = aspectToImprove.getElementsByTagName('input');
+      let aspectToImprove = document.getElementById("aspect-to-improve");
+      let checks = aspectToImprove.getElementsByTagName("input");
       setAspectImprove([]);
       let newAr = [];
       for (let i = 0; i < checks.length; i++) {
@@ -42,8 +42,8 @@ const Client = () => {
       newAr = [];
     }
     if (step === 7) {
-      let desiredOutcomes = document.getElementById('desired-outcome');
-      let checks = desiredOutcomes.getElementsByTagName('input');
+      let desiredOutcomes = document.getElementById("desired-outcome");
+      let checks = desiredOutcomes.getElementsByTagName("input");
       setDesiredOutcome([]);
       let newAr = [];
 
@@ -64,7 +64,7 @@ const Client = () => {
     setStep(step - 1);
   };
 
-  const name = 'Bipin';
+  const name = "Bipin";
 
   const handleChange = (e) => {
     return e.target.value;
@@ -330,7 +330,7 @@ const Client = () => {
                 <div className="col-md-5">
                   <img
                     className="user-img"
-                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                    src="images/user-placeholder.jpg"
                     alt="User Profile"
                   />
                 </div>
