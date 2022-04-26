@@ -1,5 +1,5 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import React from "react";
+import MainLayout from "../layouts/MainLayout";
 
 const Testimonials = () => {
   return (
@@ -8,8 +8,7 @@ const Testimonials = () => {
         <div
           className="testimonials-banner-section"
           style={{
-            backgroundImage:
-              'url("http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg")',
+            backgroundImage: 'url("images/banner.jpg")',
           }}
         >
           <div className="container">
@@ -25,7 +24,7 @@ const Testimonials = () => {
               <div className="testimonial-block">
                 <div className="person-img-part">
                   <img
-                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                    src="images/banner.jpg"
                     className="person-image"
                     alt="Person Image"
                   />
@@ -40,7 +39,7 @@ const Testimonials = () => {
               <div className="testimonial-block">
                 <div className="person-img-part">
                   <img
-                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                    src="images/banner.jpg"
                     className="person-image"
                     alt="Person Image"
                   />
@@ -55,7 +54,7 @@ const Testimonials = () => {
               <div className="testimonial-block">
                 <div className="person-img-part">
                   <img
-                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/banner.jpg"
+                    src="images/banner.jpg"
                     className="person-image"
                     alt="Person Image"
                   />
@@ -73,7 +72,7 @@ const Testimonials = () => {
           <div
             className="main-loader"
             id="main-loader"
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           >
             <div className="main-loader-inner" />
           </div>

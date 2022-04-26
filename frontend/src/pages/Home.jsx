@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProfessionalInfo } from "../actions/professionalAction";
-import MainLayout from "../layouts/MainLayout";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  const allProfessionalInfo=useSelector(state=>state.allProfessionalInfo)
-  const {loading, allProfInfo}=allProfessionalInfo
+  const allProfessionalInfo = useSelector((state) => state.allProfessionalInfo);
+  const { loading, allProfInfo } = allProfessionalInfo;
   useEffect(() => {
-   dispatch(getProfessionalInfo())
-  }, [dispatch])
-  
+    dispatch(getProfessionalInfo());
+  }, [dispatch]);
+
   return (
     <>
       <div className="home">
@@ -73,41 +73,44 @@ const Home = () => {
         <section className="therapists_section">
           <div className="container">
             <h2>Meet your Therapists</h2>
-           {loading?<h1>Loading...</h1>:(allProfInfo && allProfInfo.length===0)?(<h1>No Therapist available</h1>):(
+            {loading ? (
+              <h1>Loading...</h1>
+            ) : allProfInfo && allProfInfo.length === 0 ? (
+              <h1>No Therapist available</h1>
+            ) : (
               <div className="therapists_slider_wrapper">
-              <div className="therapists_slider" id="therapistsSlider">
-                
-               {allProfInfo && allProfInfo.map(eachProf=>(
-                  <div
-                  className="therapists_slide"
-                  onclick="therapistProfile(90)"
-                >
-                  <div className="therapists_image">
-                    {/* <img
+                <div className="therapists_slider" id="therapistsSlider">
+                  {allProfInfo &&
+                    allProfInfo.map((eachProf) => (
+                      <div
+                        className="therapists_slide"
+                        onclick="therapistProfile(90)"
+                      >
+                        <div className="therapists_image">
+                          {/* <img
                       className=" preload-me"
                       src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
                     /> */}
-                  </div>
-                  <div className="therapists_text">
-                    <h2>{`${eachProf.fullName}`}</h2>
-                    <p>{`Specialising in: ${eachProf.expertise}`}</p>
-                    <span className="online">Online</span>
-                  </div>
+                        </div>
+                        <div className="therapists_text">
+                          <h2>{`${eachProf.fullName}`}</h2>
+                          <p>{`Specialising in: ${eachProf.expertise}`}</p>
+                          <span className="online">Online</span>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-               ))}
-                
+
+                <ul className="therapists_slider_paginator">
+                  <li className="prev" id="prevTherapist">
+                    <i className="ti-angle-left" />
+                  </li>
+                  <li className="next" id="nextTherapist">
+                    <i className="ti-angle-right" />
+                  </li>
+                </ul>
               </div>
-              
-              <ul className="therapists_slider_paginator">
-                <li className="prev" id="prevTherapist">
-                  <i className="ti-angle-left" />
-                </li>
-                <li className="next" id="nextTherapist">
-                  <i className="ti-angle-right" />
-                </li>
-              </ul>
-            </div>
-           )}
+            )}
           </div>
         </section>
         <section className="why_section">
@@ -115,59 +118,38 @@ const Home = () => {
             <h2>Why Mindsetts?</h2>
             <ul>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>Free confidential 20 minute discovery calls</span>
               </li>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>Free and unlimited access to video biographies</span>
               </li>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>
                   Instantly message your preferred therapist/coach on the app
                 </span>
               </li>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>Find your perfect match to get the impact you need</span>
               </li>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>Simple registration process to kickstart change</span>
               </li>
               <li>
-                <img
-                  alt=" "
-                  src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                />
+                <img alt=" " src="images/check-circle.png" />
                 <span>
                   Experience who you want to work with before making any kind of
                   commitment
                 </span>
               </li>
             </ul>
-            <a
-              className="btn-border-round"
-              href="http://124.123.122.137:8080/mindsetts-lv-v2/get-matched"
-            >
+            <Link className="btn-border-round" to="register/client">
               Book a FREE 20 minute discovery call
-            </a>
+            </Link>
           </div>
         </section>
         <input type="hidden" name="selected_id" id="selected_id" />
@@ -204,7 +186,7 @@ const Home = () => {
                 <div className="connections_image">
                   <img
                     className=" preload-me"
-                    src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
+                    src="images/user-placeholder.jpg"
                   />
                 </div>
               </div>
@@ -222,10 +204,7 @@ const Home = () => {
                   <p>Mindsetts will: </p>
                   <ul>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="images/check-circle.png" />
                       <span>
                         Reserve your time for people you want to reach and
                         deflect the ones you don’t
@@ -242,39 +221,27 @@ const Home = () => {
                       </span>
                     </li>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="images/check-circle.png" />
                       <span>
                         Increase your visibility and boost your referrals
                       </span>
                     </li>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="images/check-circle.png" />
                       <span>
                         Self promote as much as you want and build your brand
                         and significance at no extra cost
                       </span>
                     </li>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="images/check-circle.png" />
                       <span>
                         Connect with clients 24/7 and create success while you
                         sleep
                       </span>
                     </li>
                     <li>
-                      <img
-                        alt=" "
-                        src="http://124.123.122.137:8080/mindsetts-lv-v2/images/check-circle.png"
-                      />
+                      <img alt=" " src="images/check-circle.png" />
                       <span>
                         Operate in a safe and secure space, keeping you personal
                         details private
@@ -284,12 +251,9 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <a
-              className="btn-border-round"
-              href="http://124.123.122.137:8080/mindsetts-lv-v2/professionals-signup-form"
-            >
+            <Link className="btn-border-round" to="register/professional">
               Make Connections
-            </a>
+            </Link>
           </div>
         </section>
         <section className="quotes _section">
@@ -297,8 +261,7 @@ const Home = () => {
             <blockquote
               className="blockquote"
               style={{
-                backgroundImage:
-                  'url("http://124.123.122.137:8080/mindsetts-lv-v2/images/quotes.png")',
+                backgroundImage: 'url("images/quotes.png")',
               }}
             >
               <p>
