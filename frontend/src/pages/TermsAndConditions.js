@@ -1,5 +1,4 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import React from "react";
 
 const TermsAndConditions = () => {
   return <>TermsAndConditions</>;

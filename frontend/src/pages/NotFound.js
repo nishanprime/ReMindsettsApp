@@ -1,6 +1,5 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
@@ -8,7 +7,7 @@ const NotFound = () => {
       <div
         className="content d-flex justify-content-center align-items-center m-4"
         id="main"
-        style={{ flexDirection: 'column' }}
+        style={{ flexDirection: "column" }}
       >
         <div className="not-found ">
           <h1 className="mr-3 pr-3 align-top border-right inline-block align-content-center">
