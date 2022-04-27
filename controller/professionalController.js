@@ -22,6 +22,7 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     intro,
     isTherapist,
   } = req.body;
+  console.log(expertise);
   const expertiseArray = [
     'Hypnobirthing',
     'Depression',
@@ -68,7 +69,6 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Professional account already exists');
   }
-  // console.log(req.body);
   const entryData = {
     fullName: `${firstName} ${lastName}`,
     isTherapist,
@@ -111,7 +111,6 @@ export const getAllProfessional = asyncHandler(async (req, res) => {
   const professional = await UserModel.find({ isTherapist: true }).select(
     '-password'
   );
-  console.log(professional);
   if (professional) {
     res.status(200);
     res.json(professional);

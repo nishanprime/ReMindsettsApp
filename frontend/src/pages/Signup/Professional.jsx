@@ -17,7 +17,7 @@ const [password,setPassword]=useState('')
 const [gender,setGender]=useState()
 const [insured,setInsured]=useState()
 const [bio,setBio]=useState('')
-const [expertise,setExpertise]=useState()
+const [expertise,setExpertise]=useState(  )
 const [uploading,setUploading]=useState()
 const [businessName,setBusinessName]=useState('')
 const [membership,setMembership]=useState()
@@ -224,7 +224,11 @@ dispatch(register(data))
                     name="specialities[]"
                     multiple="multiple"
                     required
-                    onChange={e=>setExpertise(e.target.value)}
+                      onChange={e=>
+                      {
+                        
+                        setExpertise(e.target.value)
+                      }}
                   >
                     <option value={1}>Hypnobirthing</option>
                     <option value={2}>Depression</option>
@@ -279,7 +283,9 @@ dispatch(register(data))
                     name="business_name"
                     required
                     value={businessName}
-                    onChange={e=>setBusinessName(e.target.value)}
+                    onChange={e=>{
+                      setBusinessName(e.target.value)
+                    }}
                   />
                 </div>
                 <div className="form-group">

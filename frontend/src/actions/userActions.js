@@ -54,16 +54,6 @@ export const register =
   ) =>
   async (dispatch) => {
     try {
-      console.log(
-        gender,
-        therapistGender,
-        fullName,
-        aspectToImprove,
-        desiredOutcome,
-        email,
-        password,
-        username
-      );
       dispatch({
         type: USER_REGISTER_REQ,
       });
@@ -72,16 +62,7 @@ export const register =
           'Content-Type': 'application/json',
         },
       };
-      console.log({
-        gender,
-        therapistGender,
-        fullName,
-        aspectToImprove,
-        desiredOutcome,
-        email,
-        password,
-        username,
-      });
+
       const { data } = await axios.post(
         '/api/users/register',
         {

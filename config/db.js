@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import aws from 'aws-sdk';
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
