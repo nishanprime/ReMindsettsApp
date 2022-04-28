@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getProfessionalInfo } from "../actions/professionalAction";
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getProfessionalInfo } from '../actions/professionalAction';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -11,6 +12,26 @@ const Home = () => {
   useEffect(() => {
     dispatch(getProfessionalInfo());
   }, [dispatch]);
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <>
@@ -78,38 +99,35 @@ const Home = () => {
               <h1>No Therapist available</h1>
             ) : (
               <div className="therapists_slider_wrapper">
-                <div className="therapists_slider" id="therapistsSlider">
-                  {allProfInfo &&
-                    allProfInfo.map((eachProf) => (
-                      <div
-                        className="therapists_slide"
-                        onclick="therapistProfile(90)"
-                      >
-                        <div className="therapists_image">
-                          {/* <img
-                      className=" preload-me"
-                      src="http://124.123.122.137:8080/mindsetts-lv-v2/images/user-placeholder.jpg"
-                    /> */}
+                <div
+                  className="therapists_slider slick-initialized slick-slider"
+                  id="therapistsSlider"
+                >
+                  <Carousel responsive={responsive}>
+                    {allProfInfo &&
+                      allProfInfo.map((eachProf) => (
+                        <div
+                          className="therapists_slide"
+                          onclick="therapistProfile(90)"
+                        >
+                          <div className="therapists_image">
+                            <img
+                              className=" preload-me"
+                              src="https://st.depositphotos.com/1518767/2572/i/600/depositphotos_25725773-stock-photo-therapist-comforting-a-patient.jpg"
+                            />
+                          </div>
+                          <div className="therapists_text">
+                            <h2>{`${eachProf.fullName}`}</h2>
+                            <p>{`Specialising in: ${eachProf.expertise}`}</p>
+                            <span className="online">Online</span>
+                          </div>
                         </div>
-                        <div className="therapists_text">
-                          <h2>{`${eachProf.fullName}`}</h2>
-                          <p>{`Specialising in: ${eachProf.expertise}`}</p>
-                          <span className="online">Online</span>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                  </Carousel>
                 </div>
-
-                <ul className="therapists_slider_paginator">
-                  <li className="prev" id="prevTherapist">
-                    <i className="ti-angle-left" />
-                  </li>
-                  <li className="next" id="nextTherapist">
-                    <i className="ti-angle-right" />
-                  </li>
-                </ul>
               </div>
             )}
+            {/* meet your therapist */}
           </div>
         </section>
         <section className="why_section">

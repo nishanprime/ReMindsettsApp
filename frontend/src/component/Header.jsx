@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from "react-router-dom";
-import ProfileAvatar from "./ProfileAvatar";
+import { Link, NavLink } from 'react-router-dom';
+import ProfileAvatar from './ProfileAvatar';
 
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
-const {userInfo}=userLogin
+  const { userInfo } = userLogin;
 
   const professionalLogin = useSelector((state) => state.professionalLogin);
-const {professionalInfo}=professionalLogin
+  const { professionalInfo } = professionalLogin;
   return (
     <>
       <header>
@@ -57,7 +57,7 @@ const {professionalInfo}=professionalLogin
                   </Link>
                 </li>
 
-                <li className="nav-item ">
+                {/* <li className="nav-item ">
                   <Link
                     className="nav-link"
                     to="
@@ -65,24 +65,22 @@ const {professionalInfo}=professionalLogin
                   >
                     PODCASTS
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item ">
                   <Link className="nav-link" to="/testimonials">
                     Testimonials
                   </Link>
                 </li>
               </ul>
-              {userInfo || professionalInfo?(
-                             <ProfileAvatar />
-
-              ):(
+              {userInfo || professionalInfo ? (
+                <ProfileAvatar />
+              ) : (
                 <div className="header-right">
-                <Link className="nav-link btn-border-round" to="/signin">
-                  Sign in
-                </Link>
-              </div>
+                  <Link className="nav-link btn-border-round" to="/signin">
+                    Sign in
+                  </Link>
+                </div>
               )}
-             
 
               {/* if signed in show the avatar */}
             </div>
