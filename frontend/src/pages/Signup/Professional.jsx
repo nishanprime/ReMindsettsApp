@@ -1,84 +1,113 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { register } from "../../actions/professionalAction";
-import { Footer } from "../../component";
-import MainLayout from "../../layouts/MainLayout";
-
+import axios from 'axios';
+import React, { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { register } from '../../actions/professionalAction';
+import { Footer } from '../../component';
+import MainLayout from '../../layouts/MainLayout';
+import Cards from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
+import StripeCheckout from 'react-stripe-checkout';
 const Professional = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [gender, setGender] = useState();
+  const [insured, setInsured] = useState();
+  const [bio, setBio] = useState('');
+  const [expertise, setExpertise] = useState();
+  const [uploading, setUploading] = useState();
+  const [businessName, setBusinessName] = useState('');
+  const [membership, setMembership] = useState('annual');
+  const [paymentInfo, setPaymentInfo] = useState(null);
+  const [intro, setIntro] = useState();
+  // For payment
+  const [number, setNumber] = useState('');
+  const [name, setName] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [focus, setFocus] = useState('');
+  const [showLoader, setShowLoader] = useState('none');
+  //
+  const [justOnce, setJustOnce] = useState(true);
 
+  const dispatch = useDispatch();
 
-const [firstName,setFirstName]=useState('')
-const [lastName,setLastName]=useState('')
-const [email,setEmail]=useState('')
-const [phone,setPhone]=useState('')
-const [password,setPassword]=useState('')
-const [gender,setGender]=useState()
-const [insured,setInsured]=useState()
-const [bio,setBio]=useState('')
-const [expertise,setExpertise]=useState(  )
-const [uploading,setUploading]=useState()
-const [businessName,setBusinessName]=useState('')
-const [membership,setMembership]=useState()
-const [payment,setPayment]=useState()
-const [intro,setIntro]=useState()
+  const professionalLogin = useSelector((state) => state.professionalLogin);
+  const { profLoading, profError, professionalInfo } = professionalLogin;
 
-const dispatch=useDispatch()
+  const navigate = useNavigate();
 
-
-const professionalLogin = useSelector((state) => state.professionalLogin);
-const { profLoading, profError, professionalInfo } = professionalLogin;
-
-const navigate=useNavigate()
-useEffect(() => {
-  if ( professionalInfo) {
-    navigate('/');
-  }
-}, [ professionalInfo, navigate]);
-
-const uploadFileHandler=async(e)=>{
-  e.preventDefault()
-  const file=e.target.files[0]
-  const formData=new FormData()
-  formData.append('intro',file)
-  setUploading(true)
-  try {
-    const config={
-      headers:{
-        'Content-Type':'multipart/form-data'
-      }
+  useEffect(() => {
+    if (professionalInfo) {
+      navigate('/');
     }
-    const {data}=await axios.post('/api/uploads',formData,config)
-    setIntro(data)
-    setUploading(false)
-  } catch (error) {
-    setUploading(false)
-  }
-}
+  }, [professionalInfo, navigate]);
+  const ref = useRef(null);
 
-const handleRegistrationFormSubmit=(e)=>{
-  e.preventDefault()
-  const data={
-    firstName,
-    lastName,
-    email,
-    phone,
-    password,
-    gender,
-    insured:insured==="Yes"?true:false,
-    bio,
-    expertise,
-    uploading,
-    businessName,
-    membership,
-    payment,
-    intro
-  }
-  
-dispatch(register(data))
-}
+  const uploadFileHandler = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('intro', file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+      const { data } = await axios.post('/api/uploads', formData, config);
+      setIntro(data);
+      setUploading(false);
+    } catch (error) {
+      setUploading(false);
+    }
+  };
 
+  const handleRegistrationFormSubmit = (e) => {
+    e.preventDefault();
+    if (!paymentInfo) {
+      return window.alert('Payment required before signing up');
+    }
+    setShowLoader(true);
+    const data = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+      gender,
+      insured: insured === 'Yes' ? true : false,
+      bio,
+      expertise,
+      uploading,
+      businessName,
+      membership,
+      paymentInfo,
+      intro,
+    };
+    dispatch(register(data));
+    setShowLoader(false);
+  };
+  const makePayment = async (token) => {
+    setPaymentInfo(null);
+    const body = {
+      token,
+      email,
+      membership,
+      payment: membership === 'annual' ? 179 : 15.99,
+    };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const { data } = await axios.post('/api/payment', body, config);
+    setPaymentInfo(data);
+  };
   return (
     <>
       <div className="professional-signup-area">
@@ -105,7 +134,7 @@ dispatch(register(data))
                   type="hidden"
                   name="_token"
                   defaultValue="p4gLL9gU20elXZfoviUNA94Zig15QIkl5NR8iiBL"
-                />{" "}
+                />{' '}
                 <div className="form-group">
                   <input
                     type="text"
@@ -114,7 +143,7 @@ dispatch(register(data))
                     placeholder="First Name"
                     required
                     value={firstName}
-                    onChange={e=>setFirstName(e.target.value)}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -125,7 +154,7 @@ dispatch(register(data))
                     placeholder="Last Name"
                     required
                     value={lastName}
-                    onChange={e=>setLastName(e.target.value)}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -136,13 +165,13 @@ dispatch(register(data))
                     placeholder="Email"
                     required
                     value={email}
-                    onChange={e=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <label
                     id="email-error"
                     className="error"
                     htmlFor="email"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                 </div>
                 <div className="form-group">
@@ -153,7 +182,7 @@ dispatch(register(data))
                     placeholder="Phone"
                     required
                     value={phone}
-                    onChange={e=>setPhone(e.target.value)}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -164,13 +193,13 @@ dispatch(register(data))
                     placeholder="Password"
                     required
                     value={password}
-                    onChange={e=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <label
                     id="password-error"
                     className="error"
                     htmlFor="password"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                 </div>
                 <div className="form-group">
@@ -179,7 +208,7 @@ dispatch(register(data))
                     id="OptionSelect1"
                     name="gender"
                     required
-                    onChange={(e)=>setGender(e.target.value)}
+                    onChange={(e) => setGender(e.target.value)}
                   >
                     <option value hidden>
                       Select Gender
@@ -195,8 +224,7 @@ dispatch(register(data))
                     id="OptionSelect2"
                     name="insured"
                     required
-
-                    onChange={e=>setInsured(e.target.value)}
+                    onChange={(e) => setInsured(e.target.value)}
                   >
                     <option value hidden>
                       Are you insured?
@@ -212,9 +240,9 @@ dispatch(register(data))
                     placeholder="Bio"
                     rows={5}
                     required
-                    defaultValue={""}
+                    defaultValue={''}
                     value={bio}
-                    onChange={e=>setBio(e.target.value)}
+                    onChange={(e) => setBio(e.target.value)}
                   />
                 </div>
                 <div className="form-group specialities">
@@ -224,11 +252,9 @@ dispatch(register(data))
                     name="specialities[]"
                     multiple="multiple"
                     required
-                      onChange={e=>
-                      {
-                        
-                        setExpertise(e.target.value)
-                      }}
+                    onChange={(e) => {
+                      setExpertise(e.target.value);
+                    }}
                   >
                     <option value={1}>Hypnobirthing</option>
                     <option value={2}>Depression</option>
@@ -272,7 +298,7 @@ dispatch(register(data))
                     id="specialities-error"
                     className="error"
                     htmlFor="specialities"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                 </div>
                 <div className="form-group">
@@ -283,8 +309,8 @@ dispatch(register(data))
                     name="business_name"
                     required
                     value={businessName}
-                    onChange={e=>{
-                      setBusinessName(e.target.value)
+                    onChange={(e) => {
+                      setBusinessName(e.target.value);
                     }}
                   />
                 </div>
@@ -295,106 +321,72 @@ dispatch(register(data))
                     accept="video/*"
                     name="video_upload"
                     onChange={uploadFileHandler}
-                    required
+                    // required
                   />
-                  {uploading && <h1>Uploading...</h1>}
+                  {uploading && (
+                    <div
+                      className="main-loader"
+                      id="main-loader"
+                      style={{ display: 'flex' }}
+                    >
+                      <div className="main-loader-inner" />
+                      <h1>Uploading</h1>
+                    </div>
+                  )}
                 </div>
                 <div className="form-group">
                   <p className="small-title">Membership</p>
                   <div className="custom-radio-button">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        defaultValue="annual"
-                        name="member_ship"
-                        id="memberShipPlan1"
-                        required
-                        onChange={(e)=>setMembership(e.target.value)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="memberShipPlan1"
-                      >
+                    <select
+                      onChange={(e) => {
+                        setMembership(e.target.value);
+                      }}
+                    >
+                      <option value={'annual'} selected>
                         Annual
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        defaultValue="monthly"
-                        name="member_ship"
-                        id="memberShipPlan2"
-                        required
-                        onChange={(e)=>setMembership(e.target.value)}
-
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="memberShipPlan2"
-                      >
-                        Monthly
-                      </label>
-                    </div>
+                      </option>
+                      <option value={'monthly'}>Monthly</option>
+                    </select>
                   </div>
                   <label
                     id="member_ship-error"
                     className="error"
                     htmlFor="member_ship"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                 </div>
                 <div className="form-group">
-                  <p className="small-title">Payment Method</p>
-                  <div className="custom-radio-button">
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="payment_method"
-                        defaultValue="paypal"
-                        id="paymentMethod1"
-                        required
-                        onChange={(e)=>setPayment(e.target.value)}
+                  <p className="small-title">Payment Details</p>
 
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="paymentMethod1"
-                      >
-                        PayPal
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="payment_method"
-                        defaultValue="debitcard"
-                        id="paymentMethod2"
-                        required
-                        onChange={(e)=>setPayment(e.target.value)}
+                  {!paymentInfo && membership && email && (
+                    <StripeCheckout
+                      name={`${membership.toUpperCase()} subscription`}
+                      amount={membership === 'annual' ? 179 * 100 : 15.99 * 100}
+                      currency="EUR"
+                      stripeKey="pk_test_51Ioi4TAb9jqpcp3cwyloCqrniFapDRF6GScWptpkONo7I3EsugACDc3Hms33HqNyZL7tkHk0i9TQJ4OcwbCENqDG00Xy9JWnPK"
+                      email={email ? email : ''}
+                      billingAddress
+                      zipCode
+                      token={makePayment}
 
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="paymentMethod2"
-                      >
-                        Debit / Credit Card
-                      </label>
+                      // opened={console.log('Popup opened')}
+                      // closed={console.log('Popup closed')}
+                    >
+                      <button type="button" className="btn btn-primary">
+                        Pay with card
+                      </button>
+                    </StripeCheckout>
+                  )}
+                  {paymentInfo && paymentInfo.paymentInfo.amount && (
+                    <div>
+                      <p>{`${membership.toUpperCase()} membership subscription purchased`}</p>
+                      <p>
+                        Total amount paid: ${paymentInfo.paymentInfo.amount}
+                      </p>
                     </div>
-                  </div>
-                  <label
-                    id="payment_method-error"
-                    className="error"
-                    htmlFor="payment_method"
-                    style={{ display: "none" }}
-                  />
+                  )}
                 </div>
-               
                 <div className="signin-button-part">
-                  
                   <input
                     type="submit"
                     className="signin-button"
@@ -406,10 +398,14 @@ dispatch(register(data))
           </div>
         </div>
       </div>
-      <div className="main-loader" id="main-loader" style={{ display: "none" }}>
+      <div
+        className="main-loader"
+        id="main-loader"
+        style={{ display: showLoader }}
+      >
         <div className="main-loader-inner" />
       </div>
-      </>
+    </>
   );
 };
 

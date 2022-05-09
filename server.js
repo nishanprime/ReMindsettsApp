@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import professionalRoutes from './routes/professionalRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import downloadRoutes from './routes/downloadRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 import fs from 'fs';
 const __dirname = path.resolve();
 const folderName = `${__dirname}/uploads`;
@@ -27,6 +28,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/professional', professionalRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/downloads', downloadRoutes);
+app.use('/api/payment', paymentRoutes);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')));
   app.get('*', (req, res) => {

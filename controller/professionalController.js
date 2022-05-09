@@ -5,6 +5,7 @@
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
 import UserModel from '../models/userModel.js';
+
 export const registerProfessional = asyncHandler(async (req, res) => {
   const {
     firstName,
@@ -18,11 +19,10 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     expertise,
     businessName,
     membership,
-    payment,
+    paymentInfo,
     intro,
-    isTherapist,
   } = req.body;
-  console.log(expertise);
+
   const expertiseArray = [
     'Hypnobirthing',
     'Depression',
@@ -69,9 +69,10 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Professional account already exists');
   }
+
   const entryData = {
     fullName: `${firstName} ${lastName}`,
-    isTherapist,
+    isTherapist: true,
     email,
     password,
     gender,
@@ -81,7 +82,7 @@ export const registerProfessional = asyncHandler(async (req, res) => {
     expertise: expertiseArray[parseInt(expertise)],
     businessName,
     membership,
-    payment,
+    paymentInfo,
     intro,
   };
   const professional = await UserModel.create(entryData);
@@ -97,7 +98,7 @@ export const registerProfessional = asyncHandler(async (req, res) => {
       expertise: professional.expertise,
       businessName: professional.businessName,
       membership: professional.membership,
-      payment: professional.payment,
+      paymentInfo: professional.paymentInfo,
       intro: professional.intro,
       token: generateToken(professional._id),
       isTherapist: professional.isTherapist,

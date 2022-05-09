@@ -58,8 +58,8 @@ const userSchema = new mongoose.Schema({
   intro: {
     type: String,
   },
-  payment: {
-    type: String,
+  paymentInfo: {
+    type: Object,
   },
 });
 
